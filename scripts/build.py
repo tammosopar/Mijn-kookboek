@@ -1,5 +1,7 @@
 """Validate source recipes and build a dependency-free static website."""
 import json
+import argparse
+import os
 import re
 import shutil
 from pathlib import Path
@@ -42,17 +44,38 @@ def load_recipes(directory):
     return sorted(recipes, key=lambda r: r['name'].casefold())
 
 
-def build(root=ROOT):
+def build(root=ROOT, environment='production', source_sha='local'):
+    if environment not in {'production', 'acceptance'}:
+        raise ValueError('Onbekende omgeving')
+    if source_sha != 'local' and not re.fullmatch(r'[0-9a-f]{40}', source_sha):
+        raise ValueError('Gebruik de volledige Git-commit-SHA')
     recipes = load_recipes(root / 'recipes')
     output = root / 'dist'
     if output.exists():
         shutil.rmtree(output)
     shutil.copytree(root / 'site', output)
+    if environment == 'acceptance':
+        index = output / 'index.html'
+        html = index.read_text(encoding='utf-8')
+        if '<body>' not in html:
+            raise ValueError('De preview vereist een HTML-body')
+        banner = ('<aside role="note" style="background:#fff0c2;color:#473600;padding:12px 20px;'
+                  'text-align:center;font:600 14px system-ui">'
+                  f'ACCEPTATIE — testversie {source_sha[:8]}. '
+                  'Deze versie is nog niet vrijgegeven voor productie.</aside>')
+        index.write_text(html.replace('<body>', '<body>\n' + banner, 1), encoding='utf-8')
     (output / 'data').mkdir()
     (output / 'data' / 'recipes.json').write_text(json.dumps(recipes, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     (output / '.nojekyll').touch()
+    metadata = {'environment': environment, 'source_repository': 'tammosopar/Mijn-kookboek',
+                'source_sha': source_sha, 'recipe_count': len(recipes)}
+    (output / 'version.json').write_text(json.dumps(metadata, indent=2) + '\n', encoding='utf-8')
     print(f'Gebouwd: {len(recipes)} recepten in {output}')
 
 
 if __name__ == '__main__':
-    build()
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--environment', choices=['production', 'acceptance'], default=os.getenv('COOKBOOK_ENV', 'production'))
+    parser.add_argument('--source-sha', default=os.getenv('SOURCE_SHA', 'local'))
+    args = parser.parse_args()
+    build(environment=args.environment, source_sha=args.source_sha)
