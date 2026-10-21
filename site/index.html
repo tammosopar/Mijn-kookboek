@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Tammo's kookboek: favoriete recepten, ingrediënten en eigen notities.">
+  <title>Mijn Kookboek</title>
+  <link rel="stylesheet" href="./assets/style.css">
+  <script src="./assets/app.js" defer></script>
+</head>
+<body>
+  <header><div><p class="eyebrow">TAMMO'S VERZAMELING</p><h1>🍋 Mijn Kookboek</h1><p>Een plek voor alles wat lekker is.</p></div></header>
+  <main>
+    <h2>Mijn recepten <span id="count"></span></h2>
+    <div class="filters">
+      <label>Zoek een gerecht of ingrediënt<input type="search" id="search" placeholder="Bijvoorbeeld pasta of citroen"></label>
+      <label>Keuken<select id="category"><option value="">Alle keukens</option></select></label>
+    </div>
+    <p id="status" role="status">Recepten laden…</p>
+    <section class="grid" id="grid" aria-label="Recepten"></section>
+    <footer>Nieuwe recepten voeg je toe via de receptenbestanden in GitHub. Ze verschijnen hier na publicatie.</footer>
+  </main>
+  <dialog id="viewer" aria-labelledby="recipe-title"><button id="close" class="close" autofocus>Sluiten</button><div id="detail"></div></dialog>
+  <noscript><p>Schakel JavaScript in om de recepten te bekijken.</p></noscript>
+</body>
+</html>

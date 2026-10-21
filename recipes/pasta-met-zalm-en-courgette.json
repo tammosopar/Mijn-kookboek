@@ -1,0 +1,25 @@
+{
+  "id": "pasta-met-zalm-en-courgette",
+  "name": "Pasta met zalm en courgette",
+  "type": "Italiaans",
+  "minutes": 30,
+  "portions": 2,
+  "emoji": "🍝",
+  "ingredients": [
+    "200 g pasta",
+    "250 g zalm",
+    "1 courgette",
+    "1 citroen",
+    "2 tenen knoflook",
+    "Verse dille of peterselie",
+    "Olijfolie, peper en zout"
+  ],
+  "instructions": [
+    "Kook de pasta al dente en bewaar wat kookwater.",
+    "Bak de courgette goudbruin en voeg knoflook toe.",
+    "Bak de zalm voorzichtig gaar.",
+    "Meng met pasta, citroenrasp, kruiden en wat kookwater.",
+    "Breng op smaak met peper en citroensap."
+  ],
+  "notes": "Licht en fris houden; niet te veel room."
+}
