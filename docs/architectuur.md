@@ -1,71 +1,35 @@
-# Architectuur en afspraken
+# Architectuur
 
-## Van recept naar site
+De huidige werkwijze staat in werkwijze.md en de inrichting in projectstatus.md.
 
-1. Een mens of later een gekoppelde app maakt één JSON-recept.
-2. Dat wordt `recipes/<id>.json` in GitHub, bij voorkeur eerst als pull request.
-3. GitHub Actions draait de tests en `scripts/build.py`.
-4. De build valideert alle recepten en maakt `dist/data/recipes.json`.
-5. Alleen een geldige build op `main` wordt op GitHub Pages gepubliceerd.
-6. De browser haalt de catalogus op, toont kaarten en filtert op naam,
-   ingrediënt en keuken. Een kaart opent ingrediënten, stappen en notities.
+## Bron en productie
 
-Een recept heeft een vaste, unieke `id`. De bestandsnaam is dezelfde id plus `.json`.
-De bronbestanden in `recipes/` zijn leidend; de catalogus is afgeleid.
-Velden: `id`, `name`, `type`, `minutes`, `portions`, `emoji`,
-`ingredients`, `instructions`, `notes`. Het script valideert dit contract zonder
-extra pakketten. Bij een onbekend of ontbrekend veld faalt de build.
+Eén JSON-bestand per recept in recipes/. HTML/CSS/JavaScript in site/.
+Python valideert de inhoud, bouwt dist/data/recipes.json en kopieert de website.
+GitHub Actions publiceert dist/ na geslaagde controles op main.
+Geen database, extra server of browseropslag nodig voor gepubliceerde recepten.
+De browser toont receptvelden als tekst, niet als uitvoerbare HTML.
 
-## Waarom deze keuze
+## Acceptatie
 
-De eerdere versie gebruikte `localStorage`. Dat is per browser en is niet de
-centrale opslag die nodig is om via een externe app recepten toe te voegen.
-Git-bestanden geven gedeelde opslag, wijzigingsgeschiedenis en herstel via commits.
-JSON voorkomt een Markdown-parser of extra metadataformaat in de eerste versie.
-GitHub Pages dient de gegenereerde bestanden uit. Er draait daar geen applicatieserver.
-De tekstvelden worden in de browser als tekst getoond, niet als uitvoerbare HTML.
+Een aparte publicatierepository bevat een workflow en source.json. Deze verwijst
+naar een volledige broncommit in Mijn-kookboek, meestal de head van een feature-PR.
+De workflow haalt de bron op, test en bouwt met environment acceptance en publiceert
+op de eigen Pages-site. Productie en acceptatie hebben een eigen deployment.
+Beide bevatten version.json. De preview heeft een zichtbare acceptatiebalk.
+De broncode wordt alleen in de bronrepository onderhouden.
 
-## Recepten vanuit ChatGPT toevoegen
+## Recepten en wijzigingen
 
-Je maakt of verfijnt een recept in ChatGPT en vraagt daarna expliciet om het
-in je kookboek op te slaan en te publiceren. ChatGPT zet het recept om naar het
-vaste JSON-formaat en schrijft via de gekoppelde GitHub-tools één bestand naar
-`recipes/<id>.json` op `main`. De bestaande workflow controleert en publiceert het.
-Er is geen extra integratie-app, webhookserver of database nodig.
+Recepten kunnen na expliciete toevoegopdracht en validatie naar main. Wijzigingen
+aan de site gaan via branch, PR en gebruikersakkoord op de preview. AGENTS.md
+legt dit vast; branchbescherming is daarmee niet automatisch ingesteld.
 
-Voorwaarden: de kookboekrepository bestaat, de GitHub-koppeling heeft toegang en
-schrijfrechten, en GitHub Pages is ingesteld op GitHub Actions. ChatGPT controleert
-voor een bestaande id eerst de huidige inhoud en voorkomt stilzwijgend overschrijven.
-De website zelf bevat geen GitHub-token en heeft geen schrijfformulier nodig.
-Zie `chatgpt-toevoegen.md` voor de werkwijze en het publicatiecriterium.
+## Migratie van de oorspronkelijke proefversie
 
-## Migratie van de proefversie
-
-De drie standaardrecepten uit de bestaande `index.html` zijn overgenomen.
-Eigen browserrecepten moeten vanuit die versie worden geëxporteerd. Dat exportbestand
-is een lijst. Per object wordt `ingredients` op regeleinden gesplitst naar een lijst;
-hetzelfde geldt voor `instructions`. Kies een vaste slug als nieuwe id, maak de
-bestandsnaam gelijk aan die id en behoud naam, keuken, tijd, porties, emoji en notities.
-De nieuwe importtool verwacht één nieuw-formaat recept per bestand; hij importeert
-de oude exportlijst niet rechtstreeks. Er zijn geen browsergegevens stilzwijgend gemigreerd.
-
-## Bewuste grenzen van deze eerste versie
-
-- Eén eigenaar en een publiek kookboek; geen accounts of besloten notities.
-- Recepten lezen en zoeken werkt; bewerken verloopt via GitHub of ChatGPT met de gekoppelde GitHub-tools.
-- Geen afbeeldingenopslag, voedingsberekeningen, boodschappenlijst of weekplanner.
-- Geen eigen domein nodig voor de verwachte github.io-URL.
-- Een fout recept stopt de nieuwe publicatie; een bestaande live versie wordt niet vervangen.
-- Een toekomstige zondagtaak moet recepten echt naar GitHub schrijven; alleen een
-  herinnering publiceren verandert de site niet. Zo'n taak is hier niet ingesteld.
-
-## Opgeleverd en nog te doen
-
-Opgeleverd: bronstructuur, werkende statische lezer, drie overgenomen voorbeelden,
-validerende build, importcommando, tests en Pages-workflow.
-
-De remote repository bestaat en de GitHub-koppeling heeft schrijfrechten.
-Voor livegang moeten de projectbestanden aanwezig zijn, GitHub Pages op Actions staan
-en de eerste deployment slagen.
-Voor toevoegen vanuit ChatGPT moet de GitHub-koppeling toegang hebben tot de kookboekrepository.
-Er zijn geen commits of wijzigingen gemaakt in `master_thesis`.
+De drie standaardrecepten uit index.html zijn overgenomen. Eigen browserrecepten
+moeten vanuit de oude versie worden geëxporteerd. De export is een lijst; splits
+per recept ingredients en instructions op regeleinden naar lijsten. Kies een vaste
+slug als id en bestandsnaam. De importtool accepteert één nieuw-formaat recept
+per bestand, niet rechtstreeks de oude exportlijst. Er zijn geen persoonlijke
+browsergegevens stilzwijgend gemigreerd.

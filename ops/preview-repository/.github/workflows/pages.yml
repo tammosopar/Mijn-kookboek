@@ -1,0 +1,69 @@
+name: Publiceer acceptatieversie
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: acceptance-pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Lees preview-instellingen
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - name: Controleer vaste bron en commit
+        id: source
+        run: |
+          python3 - <<'PY'
+          import json, os, re
+          from pathlib import Path
+          data = json.loads(Path('source.json').read_text())
+          assert set(data) == {'source_repository', 'source_sha'}, 'Onbekende invoer'
+          assert data['source_repository'] == 'tammosopar/Mijn-kookboek', 'Onjuiste bronrepository'
+          sha = data['source_sha']
+          assert isinstance(sha, str) and re.fullmatch(r'[0-9a-f]{40}', sha), 'Ongeldige commit'
+          assert sha != '0' * 40, 'Stel eerst een bestaande broncommit in'
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              output.write(f'sha={sha}\n')
+          PY
+      - name: Haal exacte bronversie op
+        uses: actions/checkout@v6
+        with:
+          repository: tammosopar/Mijn-kookboek
+          ref: ${{ steps.source.outputs.sha }}
+          path: source
+          persist-credentials: false
+      - name: Test en bouw acceptatie
+        working-directory: source
+        env:
+          SOURCE_SHA: ${{ steps.source.outputs.sha }}
+          COOKBOOK_ENV: acceptance
+        run: |
+          python3 -m unittest discover -s tests -v
+          node --check site/assets/app.js
+          python3 scripts/build.py
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: source/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/configure-pages@v5
+      - uses: actions/deploy-pages@v4
+        id: deployment
