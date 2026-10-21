@@ -7,9 +7,22 @@ const node = (tag, text, className) => {
   if (className) el.className = className;
   return el;
 };
+function coverPhoto(recipe, detail = false) {
+  if (!recipe.cover) return node('span', recipe.emoji, 'visual');
+  const image = node('img', undefined, detail ? 'detail-cover' : 'recipe-cover');
+  image.src = `./${recipe.cover.src}`;
+  image.alt = recipe.cover.alt;
+  image.width = 1200;
+  image.height = 800;
+  image.loading = detail ? 'eager' : 'lazy';
+  image.decoding = 'async';
+  image.addEventListener('error', () => image.replaceWith(node('span', recipe.emoji, 'visual')), { once: true });
+  return image;
+}
 function openRecipe(recipe) {
   const detail = $('detail');
   detail.replaceChildren();
+  if (recipe.cover) detail.append(coverPhoto(recipe, true));
   const title = node('h2', `${recipe.emoji} ${recipe.name}`);
   title.id = 'recipe-title';
   detail.append(title, node('p', `${recipe.type} · ${recipe.minutes} minuten · ${recipe.portions} personen`, 'muted'));
@@ -31,7 +44,7 @@ function render() {
   for (const recipe of shown) {
     const card = node('button', undefined, 'recipe');
     card.type = 'button';
-    card.append(node('span', recipe.emoji, 'visual'), node('strong', recipe.name), node('span', `${recipe.minutes} min · ${recipe.portions} personen`, 'muted'), node('span', recipe.type, 'tag'));
+    card.append(coverPhoto(recipe), node('strong', recipe.name), node('span', `${recipe.minutes} min · ${recipe.portions} personen`, 'muted'), node('span', recipe.type, 'tag'));
     card.addEventListener('click', () => openRecipe(recipe));
     $('grid').append(card);
   }

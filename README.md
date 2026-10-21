@@ -12,8 +12,8 @@ publiceert de stabiele versie op `main`. Lees vóór wijzigingen **AGENTS.md**.
 - **Website verbeteren:** aparte ontwikkelbranch, pull request, controles en preview.
   Na jouw akkoord op de testversie wordt de PR samengevoegd en productie gepubliceerd.
 - **Acceptatie:** de aparte repository `Mijn-kookboek-preview` publiceert dezelfde
-  broncode op basis van een exacte commitverwijzing. Deze moet nog worden aangemaakt
-  en ingesteld; zie docs/projectstatus.md.
+  broncode op basis van een exacte commitverwijzing. Deze is actief op
+  https://tammosopar.github.io/Mijn-kookboek-preview/.
 
 De testsite krijgt een ACCEPTATIE-balk. `version.json` toont per omgeving de exacte
 broncommit. Website-artifacts blijven 30 dagen beschikbaar in GitHub Actions.
@@ -62,6 +62,10 @@ python3 scripts/build.py --environment acceptance --source-sha VOLLEDIGE_COMMIT_
 Gebruik een bestaand bestand als voorbeeld. Vereist: id (slug), name, type, minutes
 (positief geheel getal), portions (positief geheel getal), emoji, ingredients (lijst),
 instructions (lijst), notes (tekst, eventueel leeg). Bestandsnaam: `<id>.json`.
+Optioneel: `cover` met `src` (lokaal pad `assets/images/<naam>.webp`, `.jpg` of `.png`)
+en een beschrijvende `alt`. Plaats de foto in `site/assets/images/`; de build
+controleert of deze bestaat. Gebruik bij nieuwe recepten een passende cover.
+Recepten zonder cover blijven werken met hun emoji.
 De gezamenlijke catalogus wordt automatisch gebouwd. De website bevat geen GitHub-token.
 
 ## Publicatie

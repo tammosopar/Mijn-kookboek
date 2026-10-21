@@ -12,7 +12,12 @@
 - [x] PR-controles en bewaarbare website-artifacts inrichten.
 - [x] Acceptatiebuild met herkenbare balk en exacte bronversie toevoegen.
 - [x] Previewrepository-template en veilige bronverwijzing voorbereiden.
-- [ ] Previewrepository aanmaken en Pages activeren; eerste live preview bevestigen.
+- [x] Previewrepository aanmaken en Pages activeren; eerste live preview bevestigd op 21 oktober 2026.
 - [ ] ChatGPT-project aanmaken en projectinstructies overnemen.
 
 Nieuwe productwensen worden hier pas toegevoegd wanneer ze besproken zijn.
+
+## In beoordeling
+
+- [ ] Uitnodigende coverfoto per recept, zichtbaar op kaarten en bij receptdetails.
+  AI-gegenereerde illustratieve foodfoto’s; eerst beoordelen op acceptatie.
