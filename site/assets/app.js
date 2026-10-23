@@ -43,10 +43,23 @@ function checklist(tag, items, kind) {
   });
   return list;
 }
+function coverPhoto(recipe, detail = false) {
+  if (!recipe.cover) return node('span', recipe.emoji, 'visual');
+  const image = node('img', undefined, detail ? 'detail-cover' : 'recipe-cover');
+  image.src = `./${recipe.cover.src}`;
+  image.alt = recipe.cover.alt;
+  image.width = 1200;
+  image.height = 800;
+  image.loading = detail ? 'eager' : 'lazy';
+  image.decoding = 'async';
+  image.addEventListener('error', () => image.replaceWith(node('span', recipe.emoji, 'visual')), { once: true });
+  return image;
+}
 function renderRecipe() {
   const recipe = currentRecipe;
   const detail = $('detail');
   detail.replaceChildren();
+  if (recipe.cover) detail.append(coverPhoto(recipe, true));
   const title = node('h2', `${recipe.emoji} ${recipe.name}`);
   title.id = 'recipe-title';
   detail.append(title, node('p', `${recipe.type} · ${recipe.minutes} minuten · ${selectedPortions} porties`, 'muted'));
@@ -127,7 +140,7 @@ function render() {
   for (const recipe of shown) {
     const card = node('button', undefined, 'recipe');
     card.type = 'button';
-    card.append(node('span', recipe.emoji, 'visual'), node('strong', recipe.name), node('span', `${recipe.minutes} min · ${recipe.portions} personen`, 'muted'), node('span', recipe.type, 'tag'));
+    card.append(coverPhoto(recipe), node('strong', recipe.name), node('span', `${recipe.minutes} min · ${recipe.portions} personen`, 'muted'), node('span', recipe.type, 'tag'));
     card.addEventListener('click', () => {
       if (location.hash === `#${recipe.id}`) openRecipe(recipe);
       else location.hash = recipe.id;
@@ -158,3 +171,16 @@ async function load() {
   }
 }
 load();
+
+window.addEventListener('beforeprint', () => {
+  if (!currentRecipe || !$('viewer').open) return;
+  $('print-recipe')?.remove();
+  const printRecipe = node('article', undefined, 'print-recipe');
+  printRecipe.id = 'print-recipe';
+  const copy = $('detail').cloneNode(true);
+  copy.removeAttribute('id');
+  copy.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
+  printRecipe.append(copy);
+  document.body.append(printRecipe);
+});
+window.addEventListener('afterprint', () => $('print-recipe')?.remove());

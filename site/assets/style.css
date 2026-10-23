@@ -15,3 +15,15 @@
   .checklist label{min-height:0}
   .print-portions{display:block}
 }
+
+.recipe-cover{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover}.detail-cover{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;border-radius:12px;margin-top:16px}.recipe{box-shadow:0 4px 16px #25332c08}.recipe:hover{box-shadow:0 6px 22px #25332c14}
+
+@media print{.detail-cover{display:none}}
+
+.print-recipe{display:none}
+@media print{
+  dialog[open]{display:none!important}
+  .print-recipe{display:block;color:black}
+  .print-recipe h2,.print-recipe h3{break-after:avoid}
+  .print-recipe li{break-inside:avoid}
+}

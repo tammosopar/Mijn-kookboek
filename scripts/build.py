@@ -14,8 +14,16 @@ def validate(recipe):
     if not isinstance(recipe, dict):
         raise ValueError('Recept moet een JSON-object zijn')
     required = {'id', 'name', 'type', 'minutes', 'portions', 'emoji', 'ingredients', 'instructions', 'notes'}
-    if set(recipe) != required:
+    if not required <= set(recipe) or set(recipe) - required - {'cover'}:
         raise ValueError(f'Verwachte velden: {sorted(required)}')
+    if 'cover' in recipe:
+        cover = recipe['cover']
+        if not isinstance(cover, dict) or set(cover) != {'src', 'alt'}:
+            raise ValueError('cover vereist src en alt')
+        if not isinstance(cover['src'], str) or not re.fullmatch(r'assets/images/[a-z0-9-]+\.(?:webp|jpg|png)', cover['src']):
+            raise ValueError('cover.src moet een lokaal afbeeldingspad zijn')
+        if not isinstance(cover['alt'], str) or not cover['alt'].strip():
+            raise ValueError('cover.alt moet de foto beschrijven')
     if not isinstance(recipe['id'], str) or not re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*', recipe['id']):
         raise ValueError('id moet een slug zijn, zoals pasta-puttanesca')
     for key in ('name', 'type', 'emoji'):
@@ -64,6 +72,9 @@ def build(root=ROOT, environment='production', source_sha='local'):
     if source_sha != 'local' and not re.fullmatch(r'[0-9a-f]{40}', source_sha):
         raise ValueError('Gebruik de volledige Git-commit-SHA')
     recipes = load_recipes(root / 'recipes')
+    for recipe in recipes:
+        if 'cover' in recipe and not (root / 'site' / recipe['cover']['src']).is_file():
+            raise ValueError(f"Coverfoto ontbreekt voor {recipe['id']}")
     output = root / 'dist'
     if output.exists():
         shutil.rmtree(output)

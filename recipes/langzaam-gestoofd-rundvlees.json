@@ -49,5 +49,9 @@
     "Stoof 3–4 uur zachtjes tot het vlees mals is.",
     "Serveer met aardappelpuree en sperziebonen."
   ],
-  "notes": "Probeer eens La Trappe Dubbel."
+  "notes": "Probeer eens La Trappe Dubbel.",
+  "cover": {
+    "src": "assets/images/langzaam-gestoofd-rundvlees.webp",
+    "alt": "Runderstoof met wortel, aardappelpuree en sperziebonen"
+  }
 }

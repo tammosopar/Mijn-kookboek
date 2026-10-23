@@ -49,5 +49,9 @@
     "Meng met pasta, citroenrasp, kruiden en wat kookwater.",
     "Breng op smaak met peper en citroensap."
   ],
-  "notes": "Licht en fris houden; niet te veel room."
+  "notes": "Licht en fris houden; niet te veel room.",
+  "cover": {
+    "src": "assets/images/pasta-met-zalm-en-courgette.webp",
+    "alt": "Pasta met zalm, gebakken courgette, citroen en verse kruiden"
+  }
 }

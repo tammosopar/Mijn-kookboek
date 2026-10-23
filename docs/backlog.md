@@ -28,3 +28,9 @@ Nieuwe productwensen worden hier pas toegevoegd wanneer ze besproken zijn.
 - Automatische controle op verschillen met de preview-inrichting.
 
 Deze functies zijn aangeboden voor preview; vrijgave naar productie volgt pas na akkoord.
+
+## Reeds aanwezig op acceptatie
+
+
+- [ ] Uitnodigende coverfoto per recept, zichtbaar op kaarten en bij receptdetails.
+  AI-gegenereerde illustratieve foodfoto’s; eerst beoordelen op acceptatie.

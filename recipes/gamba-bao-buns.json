@@ -59,5 +59,9 @@
     "Stoom de bao buns volgens verpakking.",
     "Vul met groenten, gamba’s, saus en bosui."
   ],
-  "notes": "Voeg eventueel een beetje sojasaus toe."
+  "notes": "Voeg eventueel een beetje sojasaus toe.",
+  "cover": {
+    "src": "assets/images/gamba-bao-buns.webp",
+    "alt": "Bao buns met gamba’s, gepekelde kool, radijs en limoen-chilimayonaise"
+  }
 }

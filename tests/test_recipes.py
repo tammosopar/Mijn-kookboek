@@ -12,7 +12,8 @@ from add_recipe import add_recipe
 
 class RecipeTests(unittest.TestCase):
     def setUp(self):
-        self.recipe = load_recipes(ROOT / 'recipes')[0]
+        self.recipe = dict(load_recipes(ROOT / 'recipes')[0])
+        self.recipe.pop('cover', None)
 
     def test_invalid_recipe_is_rejected(self):
         for key, bad in [('id', '../escape'), ('minutes', True), ('portions', 0), ('ingredients', []), ('instructions', 'geen lijst')]:

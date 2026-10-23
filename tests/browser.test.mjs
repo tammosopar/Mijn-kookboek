@@ -46,8 +46,9 @@ test('kookboek in Chromium', { timeout: 120000 }, async t => {
       return result.result.value;
     };
     const wait = expression => until(() => evaluate(expression), expression);
+    let visitNumber = 0;
     const visit = async (hash = '') => {
-      await command('Page.navigate', { url: `http://127.0.0.1:8765/${hash}` });
+      await command('Page.navigate', { url: `http://127.0.0.1:8765/?test=${++visitNumber}${hash}` });
       await wait('document.querySelectorAll(".recipe").length === 3');
     };
     await command('Page.enable');
@@ -102,9 +103,11 @@ test('kookboek in Chromium', { timeout: 120000 }, async t => {
       await wait('document.querySelector("#viewer").open');
       assert.equal(await evaluate('document.documentElement.scrollWidth <= innerWidth'), true);
       assert.equal(await evaluate('document.querySelector("#viewer").scrollWidth <= document.querySelector("#viewer").clientWidth'), true);
+      await evaluate('window.dispatchEvent(new Event("beforeprint"))');
       await command('Emulation.setEmulatedMedia', { media: 'print' });
       assert.equal(await evaluate('getComputedStyle(document.querySelector("main")).display'), 'none');
-      assert.equal(await evaluate('getComputedStyle(document.querySelector("#viewer")).position'), 'static');
+      assert.equal(await evaluate('getComputedStyle(document.querySelector("#viewer")).display'), 'none');
+      assert.equal(await evaluate('getComputedStyle(document.querySelector("#print-recipe")).display'), 'block');
       assert.equal(await evaluate('getComputedStyle(document.querySelector(".checklist input")).display'), 'none');
       const pdf = await command('Page.printToPDF', { printBackground: true });
       assert.ok(Buffer.from(pdf.data, 'base64').length > 1000);
