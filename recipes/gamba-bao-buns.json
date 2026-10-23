@@ -6,15 +6,51 @@
   "portions": 4,
   "emoji": "🍤",
   "ingredients": [
-    "8 bao buns",
-    "400 g gamba’s",
-    "Witte kool",
-    "Radijs",
-    "Rijstazijn",
-    "Mayonaise",
-    "Limoen",
-    "Chili",
-    "Bosui, knoflook en gember"
+    {
+      "quantity": 8,
+      "unit": "",
+      "name": "bao buns"
+    },
+    {
+      "quantity": 400,
+      "unit": "g",
+      "name": "gamba’s"
+    },
+    {
+      "quantity": null,
+      "unit": "",
+      "name": "Witte kool"
+    },
+    {
+      "quantity": null,
+      "unit": "",
+      "name": "Radijs"
+    },
+    {
+      "quantity": null,
+      "unit": "",
+      "name": "Rijstazijn"
+    },
+    {
+      "quantity": null,
+      "unit": "",
+      "name": "Mayonaise"
+    },
+    {
+      "quantity": null,
+      "unit": "",
+      "name": "Limoen"
+    },
+    {
+      "quantity": null,
+      "unit": "",
+      "name": "Chili"
+    },
+    {
+      "quantity": null,
+      "unit": "",
+      "name": "Bosui, knoflook en gember"
+    }
   ],
   "instructions": [
     "Snijd kool en radijs fijn en pekel met rijstazijn.",

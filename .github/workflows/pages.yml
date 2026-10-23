@@ -18,6 +18,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: browser-actions/setup-chrome@v2
+        id: chrome
+      - name: Controleer preview-inrichting
+        run: python3 scripts/check_preview_sync.py
       - name: Test receptenverwerking
         run: python3 -m unittest discover -s tests -v
       - name: Controleer JavaScript
@@ -27,6 +34,10 @@ jobs:
         env:
           COOKBOOK_ENV: ${{ github.event_name == 'pull_request' && 'acceptance' || 'production' }}
           SOURCE_SHA: ${{ github.sha }}
+      - name: Test website in Chromium
+        run: node --test tests/browser.test.mjs
+        env:
+          CHROME_BIN: ${{ steps.chrome.outputs.chrome-path }}
       - name: Bewaar controleerbare websiteversie
         uses: actions/upload-artifact@v4
         with:
@@ -53,3 +64,4 @@ jobs:
       - uses: actions/configure-pages@v5
       - uses: actions/deploy-pages@v4
         id: deployment
+

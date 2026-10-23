@@ -12,8 +12,8 @@ publiceert de stabiele versie op `main`. Lees vóór wijzigingen **AGENTS.md**.
 - **Website verbeteren:** aparte ontwikkelbranch, pull request, controles en preview.
   Na jouw akkoord op de testversie wordt de PR samengevoegd en productie gepubliceerd.
 - **Acceptatie:** de aparte repository `Mijn-kookboek-preview` publiceert dezelfde
-  broncode op basis van een exacte commitverwijzing. Deze moet nog worden aangemaakt
-  en ingesteld; zie docs/projectstatus.md.
+  broncode op basis van een exacte commitverwijzing. De repository en Pages-publicatie zijn ingericht;
+  zie docs/projectstatus.md.
 
 De testsite krijgt een ACCEPTATIE-balk. `version.json` toont per omgeving de exacte
 broncommit. Website-artifacts blijven 30 dagen beschikbaar in GitHub Actions.
@@ -42,12 +42,15 @@ Eigen browserrecepten uit die versie moeten apart worden geëxporteerd.
 
 ## Lokaal controleren en proberen
 
-Vereist Python 3.10+ en Node voor JavaScript-syntaxcontrole. Geen extra Python-pakketten.
+Vereist Python 3.10+, Node 24+ en Chromium voor de browsertests. Geen extra pakketten.
+Stel eventueel CHROME_BIN in op het pad naar Chrome of Chromium.
 
 ```bash
 python3 -m unittest discover -s tests -v
 node --check site/assets/app.js
 python3 scripts/build.py
+node --test tests/browser.test.mjs
+python3 scripts/check_preview_sync.py
 python3 -m http.server 8000 --directory dist
 ```
 
@@ -70,3 +73,20 @@ Productie en preview gebruiken ieder Settings → Pages → Source: GitHub Actio
 Een PR bouwt en bewaart een artifact maar publiceert nooit productie. Alleen main
 kan de productie-deploy uitvoeren. De preview publiceert uitsluitend haar eigen site.
 Zie docs/werkwijze.md voor de automatische preview na het bijwerken van source.json.
+
+
+## Koken met het kookboek
+
+Recepten hebben een deelbare URL, bijvoorbeeld `#gamba-bao-buns`. Pas porties aan
+om bekende hoeveelheden om te rekenen; tijden en hoeveelheden zonder getal blijven
+gelijk. Ingrediënten en stappen zijn afvinkbaar en worden op dit apparaat bewaard.
+Met “Vinkjes wissen” begin je opnieuw; “Print recept” print alleen het geopende recept.
+
+Ingrediënten gebruiken `{"quantity": 200, "unit": "g", "name": "pasta"}`.
+Gebruik `null` voor een onbekende hoeveelheid. Oude tekstingrediënten blijven
+ondersteund en worden niet omgerekend. Positieve gehele en decimale hoeveelheden
+zijn toegestaan. Het oorspronkelijke portieaantal blijft de basis voor elke berekening.
+
+De workflow controleert de preview-inrichting tegen `ops/preview-repository/`;
+alleen de kandidaat-SHA mag verschillen. Werk bij een bewuste inrichtingswijziging
+de template en de previewrepository samen bij.

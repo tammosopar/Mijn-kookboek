@@ -18,7 +18,7 @@
 | Mijn-kookboek/acceptatie | laatst aangeboden testcommit |
 | Mijn-kookboek-preview/main | vaste workflow en source.json; geen tweede codebase |
 | Productie-URL | https://tammosopar.github.io/Mijn-kookboek/ |
-| Verwachte acceptatie-URL | https://tammosopar.github.io/Mijn-kookboek-preview/ |
+| Acceptatie-URL | https://tammosopar.github.io/Mijn-kookboek-preview/ |
 
 Een testversie krijgt een opvallende ACCEPTATIE-balk. Beide omgevingen krijgen
 `version.json` met omgeving, bronrepository, volledige broncommit en receptaantal.
@@ -53,6 +53,8 @@ Elke pull request naar main voert uit:
 1. Python-tests voor recepten, duplicaten en bouw/publicatie-inrichting.
 2. JavaScript-syntaxcontrole.
 3. Een build met alle receptbestanden en een controleerbaar website-artifact.
+4. Chromium-tests voor receptgebruik, navigatie, porties, print, mobiel en laadfouten.
+5. Controle of de preview-inrichting overeenkomt met de beheerde template.
 
 De PR publiceert nooit productie. Een push naar main doorloopt dezelfde controles
 voordat de bestaande productie-workflow publiceert. PR-artifacts gebruiken de
@@ -92,6 +94,7 @@ preview-SHA; de PR legt de relatie vast en productie version.json toont de merge
 
 ## Nog handmatig nodig
 
-De tweede repository moet bestaan, toegankelijk zijn en Pages ingeschakeld hebben.
+De tweede repository bestaat en heeft succesvolle Pages-publicaties.
 Een ChatGPT-project kan niet vanuit de GitHub-tools worden aangemaakt. Zie
 `chatgpt-project.md`. Zie `projectstatus.md` voor de actuele afrondingsstatus.
+
