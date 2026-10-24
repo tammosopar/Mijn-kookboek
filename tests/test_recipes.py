@@ -12,12 +12,21 @@ from add_recipe import add_recipe
 
 class RecipeTests(unittest.TestCase):
     def setUp(self):
-        self.recipe = load_recipes(ROOT / 'recipes')[0]
+        self.recipe = dict(load_recipes(ROOT / 'recipes')[0])
+        self.recipe.pop('cover', None)
 
     def test_invalid_recipe_is_rejected(self):
         for key, bad in [('id', '../escape'), ('minutes', True), ('portions', 0), ('ingredients', []), ('instructions', 'geen lijst')]:
             with self.subTest(key=key), self.assertRaises(ValueError):
                 validate(dict(self.recipe, **{key: bad}))
+
+    def test_structured_ingredient_quantities(self):
+        for bad in [True, 0, -1, float('nan'), float('inf'), '200']:
+            with self.subTest(quantity=bad), self.assertRaises(ValueError):
+                validate(dict(self.recipe, ingredients=[{'quantity': bad, 'unit': 'g', 'name': 'pasta'}]))
+        for quantity in [None, 0.5, 200]:
+            validate(dict(self.recipe, ingredients=[{'quantity': quantity, 'unit': 'g', 'name': 'pasta'}]))
+        validate(dict(self.recipe, ingredients=['200 g pasta']))
 
     def test_retry_is_safe_and_overwrite_is_rejected(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -54,3 +63,4 @@ class RecipeTests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+

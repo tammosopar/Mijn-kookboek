@@ -4,6 +4,7 @@ import argparse
 import os
 import re
 import shutil
+import math
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -13,8 +14,16 @@ def validate(recipe):
     if not isinstance(recipe, dict):
         raise ValueError('Recept moet een JSON-object zijn')
     required = {'id', 'name', 'type', 'minutes', 'portions', 'emoji', 'ingredients', 'instructions', 'notes'}
-    if set(recipe) != required:
+    if not required <= set(recipe) or set(recipe) - required - {'cover'}:
         raise ValueError(f'Verwachte velden: {sorted(required)}')
+    if 'cover' in recipe:
+        cover = recipe['cover']
+        if not isinstance(cover, dict) or set(cover) != {'src', 'alt'}:
+            raise ValueError('cover vereist src en alt')
+        if not isinstance(cover['src'], str) or not re.fullmatch(r'assets/images/[a-z0-9-]+\.(?:webp|jpg|png)', cover['src']):
+            raise ValueError('cover.src moet een lokaal afbeeldingspad zijn')
+        if not isinstance(cover['alt'], str) or not cover['alt'].strip():
+            raise ValueError('cover.alt moet de foto beschrijven')
     if not isinstance(recipe['id'], str) or not re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*', recipe['id']):
         raise ValueError('id moet een slug zijn, zoals pasta-puttanesca')
     for key in ('name', 'type', 'emoji'):
@@ -25,9 +34,22 @@ def validate(recipe):
     for key in ('minutes', 'portions'):
         if type(recipe[key]) is not int or recipe[key] < 1:
             raise ValueError(f'{key} moet een positief geheel getal zijn')
-    for key in ('ingredients', 'instructions'):
+    for key in ('instructions',):
         if not isinstance(recipe[key], list) or not recipe[key] or not all(isinstance(x, str) and x.strip() for x in recipe[key]):
             raise ValueError(f'{key} moet een niet-lege lijst met tekst zijn')
+    if not isinstance(recipe['ingredients'], list) or not recipe['ingredients']:
+        raise ValueError('ingredients moet een niet-lege lijst zijn')
+    for item in recipe['ingredients']:
+        # Oude tekstingrediënten blijven bruikbaar; alleen expliciete hoeveelheden schalen.
+        if isinstance(item, str) and item.strip():
+            continue
+        if not isinstance(item, dict) or set(item) != {'quantity', 'unit', 'name'}:
+            raise ValueError('Ingrediënt vereist quantity, unit en name')
+        if not isinstance(item['name'], str) or not item['name'].strip() or not isinstance(item['unit'], str):
+            raise ValueError('Ingrediëntnaam en eenheid moeten tekst zijn')
+        quantity = item['quantity']
+        if quantity is not None and (type(quantity) not in (int, float) or not math.isfinite(quantity) or quantity <= 0):
+            raise ValueError('Hoeveelheid moet positief en eindig zijn, of null')
     return recipe
 
 
@@ -50,6 +72,9 @@ def build(root=ROOT, environment='production', source_sha='local'):
     if source_sha != 'local' and not re.fullmatch(r'[0-9a-f]{40}', source_sha):
         raise ValueError('Gebruik de volledige Git-commit-SHA')
     recipes = load_recipes(root / 'recipes')
+    for recipe in recipes:
+        if 'cover' in recipe and not (root / 'site' / recipe['cover']['src']).is_file():
+            raise ValueError(f"Coverfoto ontbreekt voor {recipe['id']}")
     output = root / 'dist'
     if output.exists():
         shutil.rmtree(output)
@@ -79,3 +104,4 @@ if __name__ == '__main__':
     parser.add_argument('--source-sha', default=os.getenv('SOURCE_SHA', 'local'))
     args = parser.parse_args()
     build(environment=args.environment, source_sha=args.source_sha)
+
