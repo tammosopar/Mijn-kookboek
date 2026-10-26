@@ -1,55 +1,78 @@
 {
   "id": "langzaam-gestoofd-rundvlees",
-  "name": "Langzaam gestoofd rundvlees",
-  "type": "Nederlands",
+  "name": "Vlaams stoofpotje",
+  "type": "Belgisch",
   "minutes": 240,
   "portions": 4,
   "emoji": "🥘",
   "ingredients": [
     {
-      "quantity": 800,
-      "unit": "g",
-      "name": "runderstoofvlees"
+      "quantity": 1,
+      "unit": "kg",
+      "name": "riblappen of runderlappen"
     },
     {
-      "quantity": 2,
+      "quantity": null,
+      "unit": "",
+      "name": "winterpeen"
+    },
+    {
+      "quantity": 1,
+      "unit": "bakje",
+      "name": "champignons"
+    },
+    {
+      "quantity": 3,
       "unit": "",
       "name": "uien"
     },
     {
       "quantity": 2,
-      "unit": "",
-      "name": "wortels"
-    },
-    {
-      "quantity": 330,
-      "unit": "ml",
-      "name": "donker bier"
-    },
-    {
-      "quantity": 2,
-      "unit": "",
-      "name": "laurierblaadjes"
-    },
-    {
-      "quantity": 2,
-      "unit": "",
-      "name": "kruidnagels"
+      "unit": "blaadjes",
+      "name": "laurier"
     },
     {
       "quantity": null,
       "unit": "",
-      "name": "Tijm, peper en zout"
+      "name": "een paar kruidnagels"
+    },
+    {
+      "quantity": null,
+      "unit": "",
+      "name": "speciaalbier, bijvoorbeeld Westmalle Tripel"
+    },
+    {
+      "quantity": 1,
+      "unit": "l",
+      "name": "runderbouillon"
+    },
+    {
+      "quantity": null,
+      "unit": "",
+      "name": "mosterd"
+    },
+    {
+      "quantity": 1,
+      "unit": "el",
+      "name": "bloem"
+    },
+    {
+      "quantity": null,
+      "unit": "",
+      "name": "olie, om in te bakken"
     }
   ],
   "instructions": [
-    "Bak het vlees in porties bruin.",
-    "Fruit de uien en wortels.",
-    "Voeg bier, kruiden en vlees toe.",
-    "Stoof 3–4 uur zachtjes tot het vlees mals is.",
-    "Serveer met aardappelpuree en sperziebonen."
+    "Snijd het vlees in stukken. Schil de winterpeen en snijd in stukjes. Snijd de champignons in vieren en de uien in halve ringen.",
+    "Verhit wat olie in een braadpan en bak het vlees rondom bruin aan.",
+    "Strooi na 2 minuten 1 eetlepel bloem over het vlees en bak even mee.",
+    "Haal het vlees uit de pan.",
+    "Stoof de ui, winterpeen en champignons aan in dezelfde pan. Voeg zo nodig wat extra olie toe.",
+    "Doe het vlees terug in de pan en voeg het speciaalbier en de runderbouillon toe.",
+    "Voeg de kruidnagels, laurier en mosterd toe. Roer goed door zodat alles gemengd is.",
+    "Zet het vuur laag en laat langzaam garen tot het vlees mals is; dit duurt meestal ongeveer 4 uur."
   ],
-  "notes": "Probeer eens La Trappe Dubbel.",
+  "notes": "Voor 4 personen. Gebruik bijvoorbeeld Westmalle Tripel als speciaalbier. De hoeveelheid bier, winterpeen, kruidnagels en mosterd is niet gespecificeerd in het oorspronkelijke recept. De stooftijd is circa 4 uur, exclusief voorbereiding en aanbakken.",
   "cover": {
     "src": "assets/images/langzaam-gestoofd-rundvlees.webp",
     "alt": "Runderstoof met wortel, aardappelpuree en sperziebonen"
