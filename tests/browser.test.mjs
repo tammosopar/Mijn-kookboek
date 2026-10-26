@@ -16,7 +16,8 @@ async function until(fn, message) {
 }
 
 test('kookboek in Chromium', { timeout: 120000 }, async t => {
-  const recipeCount = JSON.parse(await readFile(join('dist', 'data', 'recipes.json'), 'utf8')).length;
+  const recipes = JSON.parse(await readFile(join('dist', 'data', 'recipes.json'), 'utf8'));
+  const recipeCount = recipes.length;
   assert.ok(recipeCount > 0, 'De catalogus bevat recepten');
   const profile = await mkdtemp(join(tmpdir(), 'cookbook-browser-'));
   const server = spawn('python3', ['-m', 'http.server', '8765', '--bind', '127.0.0.1', '--directory', 'dist'], { stdio: 'ignore' });
@@ -67,7 +68,10 @@ test('kookboek in Chromium', { timeout: 120000 }, async t => {
       assert.match(await evaluate('document.querySelector("#recipe-title").textContent'), /Gamba/);
       await evaluate('document.querySelector(".checklist input").click()');
       await evaluate('document.querySelector("#portions").value="8"; document.querySelector("#portions").dispatchEvent(new Event("change"))');
-      assert.match(await evaluate('document.querySelector("#detail").textContent'), /800 g gamba/);
+      const bao = recipes.find(recipe => recipe.id === 'gamba-bao-buns');
+      const gambas = bao.ingredients.find(ingredient => ingredient.name.startsWith('gamba'));
+      const scaledGambas = [Number(gambas.quantity * 8 / bao.portions).toLocaleString('nl-NL'), gambas.unit, gambas.name].filter(Boolean).join(' ');
+      assert.ok((await evaluate('document.querySelector("#detail").textContent')).includes(scaledGambas));
       assert.equal(await evaluate('document.querySelector(".checklist input").checked'), true);
       await evaluate('document.querySelector("#portions").value="0"; document.querySelector("#portions").dispatchEvent(new Event("change"))');
       assert.equal(await evaluate('document.querySelector("#portions").value'), '8');
