@@ -9,57 +9,105 @@
     {
       "quantity": 8,
       "unit": "",
-      "name": "bao buns"
+      "name": "bao buns (2–3 per persoon; gebruik naar wens 12 voor 4 personen)"
     },
     {
-      "quantity": 400,
+      "quantity": 800,
       "unit": "g",
-      "name": "gamba’s"
+      "name": "gamba’s (150–200 g per persoon; 600–800 g voor 4 personen)"
+    },
+    {
+      "quantity": 4,
+      "unit": "tenen",
+      "name": "knoflook, fijngehakt"
+    },
+    {
+      "quantity": 4,
+      "unit": "cm",
+      "name": "verse gember, fijn geraspt"
+    },
+    {
+      "quantity": 4,
+      "unit": "",
+      "name": "bosuien, in dunne ringetjes"
+    },
+    {
+      "quantity": 4,
+      "unit": "el",
+      "name": "sojasaus, naar smaak tot 6 el"
+    },
+    {
+      "quantity": 2,
+      "unit": "tl",
+      "name": "olie"
     },
     {
       "quantity": null,
       "unit": "",
-      "name": "Witte kool"
+      "name": "witte kool, fijngesneden, naar smaak"
     },
     {
       "quantity": null,
       "unit": "",
-      "name": "Radijs"
+      "name": "radijs, dun gesneden, naar smaak"
     },
     {
       "quantity": null,
       "unit": "",
-      "name": "Rijstazijn"
+      "name": "rijstazijn, voor de pickle (evenveel als water)"
     },
     {
       "quantity": null,
       "unit": "",
-      "name": "Mayonaise"
+      "name": "water, voor de pickle (evenveel als rijstazijn)"
     },
     {
       "quantity": null,
       "unit": "",
-      "name": "Limoen"
+      "name": "zout, voor de pickle, naar smaak"
     },
     {
       "quantity": null,
       "unit": "",
-      "name": "Chili"
+      "name": "suiker, voor de pickle, naar smaak"
     },
     {
       "quantity": null,
       "unit": "",
-      "name": "Bosui, knoflook en gember"
+      "name": "mayonaise, naar smaak"
+    },
+    {
+      "quantity": null,
+      "unit": "",
+      "name": "limoenrasp, naar smaak"
+    },
+    {
+      "quantity": null,
+      "unit": "",
+      "name": "chilicrisp, naar smaak"
+    },
+    {
+      "quantity": null,
+      "unit": "",
+      "name": "sambal oelek, naar smaak"
+    },
+    {
+      "quantity": null,
+      "unit": "",
+      "name": "rauwe gember, in flinterdunne reepjes (optioneel)"
     }
   ],
   "instructions": [
-    "Snijd kool en radijs fijn en pekel met rijstazijn.",
-    "Meng mayonaise met limoen en chili.",
-    "Bak gamba’s met knoflook en gember.",
-    "Stoom de bao buns volgens verpakking.",
-    "Vul met groenten, gamba’s, saus en bosui."
+    "Snijd de witte kool fijn en de radijs in dunne plakjes. Meng gelijke delen rijstazijn en water met zout en suiker naar smaak. Leg de kool en radijs hierin en laat intrekken terwijl je de rest bereidt.",
+    "Meng mayonaise met limoenrasp, chilicrisp en sambal oelek naar smaak.",
+    "Stoom de bao buns volgens de aanwijzingen op de verpakking.",
+    "Dep de gamba’s goed droog. Verhit een pan heel heet met een klein beetje olie. Bak de gamba’s zo nodig in porties, zodat de pan heet blijft.",
+    "Bak de gamba’s circa 1 minuut hard aan. Draai om, voeg de fijngehakte knoflook en geraspte gember toe en bak nog circa 1 minuut, tot de gamba’s net gaar zijn.",
+    "Zet het vuur iets lager. Voeg de sojasaus toe (begin met 1 el per persoon) en schep nog 20–30 seconden om, zodat de soja om de gamba’s heen zit. Bak niet langer dan nodig; zo blijven ze sappig.",
+    "Laat de gepekelde kool en radijs uitlekken. Bestrijk elke bao met een dun laagje limoen-chilimayo en beleg met een flinke hoeveelheid kool en radijs, gevolgd door 2–3 gamba’s, afhankelijk van hun formaat.",
+    "Strooi de bosui pas op het einde over de gamba’s, zodat hij fris en knapperig blijft. Voeg eventueel een paar flinterdunne reepjes rauwe gember toe."
   ],
-  "notes": "Voeg eventueel een beetje sojasaus toe.",
+  "notes": "Reken per persoon op 2–3 bao buns en 150–200 g gamba’s. De hoeveelheden hierboven zijn gebaseerd op 4 personen, met 8 bao buns en 800 g gamba’s. Houd de gamba’s vooral hartig, knoflookachtig en umami: de pickle en limoen-chilimayo zorgen al voor frisheid, zuur en pit. Wijnsuggestie: droge Riesling.",
   "cover": {
     "src": "assets/images/gamba-bao-buns.webp",
     "alt": "Bao buns met gamba’s, gepekelde kool, radijs en limoen-chilimayonaise"
