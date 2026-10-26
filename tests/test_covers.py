@@ -26,6 +26,7 @@ class CoverTests(unittest.TestCase):
             (root / 'site/index.html').write_text('<body></body>')
             build(root)
             recipe = copy.deepcopy(load_recipes(ROOT / 'recipes')[0])
+            recipe['cover'] = {'src': 'assets/images/test-cover.webp', 'alt': 'Testfoto'}
             (root / 'recipes' / f"{recipe['id']}.json").write_text(json.dumps(recipe))
             with self.assertRaisesRegex(ValueError, 'Coverfoto ontbreekt'):
                 build(root)
