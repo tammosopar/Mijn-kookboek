@@ -2,7 +2,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
-import { mkdtemp, rm, writeFile } from 'node:fs/promises';
+import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { setTimeout as delay } from 'node:timers/promises';
@@ -16,6 +16,8 @@ async function until(fn, message) {
 }
 
 test('kookboek in Chromium', { timeout: 120000 }, async t => {
+  const recipeCount = JSON.parse(await readFile(join('dist', 'data', 'recipes.json'), 'utf8')).length;
+  assert.ok(recipeCount > 0, 'De catalogus bevat recepten');
   const profile = await mkdtemp(join(tmpdir(), 'cookbook-browser-'));
   const server = spawn('python3', ['-m', 'http.server', '8765', '--bind', '127.0.0.1', '--directory', 'dist'], { stdio: 'ignore' });
   const chrome = spawn(process.env.CHROME_BIN || 'chromium', ['--headless', '--no-sandbox', '--disable-dev-shm-usage', '--remote-debugging-port=9222', `--user-data-dir=${profile}`, 'about:blank'], { stdio: 'ignore' });
@@ -49,7 +51,7 @@ test('kookboek in Chromium', { timeout: 120000 }, async t => {
     let visitNumber = 0;
     const visit = async (hash = '') => {
       await command('Page.navigate', { url: `http://127.0.0.1:8765/?test=${++visitNumber}${hash}` });
-      await wait('document.querySelectorAll(".recipe").length === 3');
+      await wait(`document.querySelectorAll(".recipe").length === ${recipeCount}`);
     };
     await command('Page.enable');
     await t.test('zoeken en keukenfilter', async () => {
