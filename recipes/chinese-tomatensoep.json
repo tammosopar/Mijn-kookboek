@@ -1,0 +1,111 @@
+{
+  "id": "chinese-tomatensoep",
+  "name": "Chinese tomatensoep zonder kip",
+  "type": "Aziatisch",
+  "minutes": 40,
+  "portions": 4,
+  "emoji": "🍅",
+  "ingredients": [
+    {
+      "quantity": 750,
+      "unit": "g",
+      "name": "romatomaten"
+    },
+    {
+      "quantity": 400,
+      "unit": "ml",
+      "name": "water"
+    },
+    {
+      "quantity": 0.5,
+      "unit": "blokje",
+      "name": "groentebouillon"
+    },
+    {
+      "quantity": 70,
+      "unit": "g",
+      "name": "tomatenpuree"
+    },
+    {
+      "quantity": 1,
+      "unit": "",
+      "name": "ui"
+    },
+    {
+      "quantity": 2,
+      "unit": "tenen",
+      "name": "knoflook"
+    },
+    {
+      "quantity": 3,
+      "unit": "cm",
+      "name": "verse gember"
+    },
+    {
+      "quantity": 1,
+      "unit": "el",
+      "name": "ketjap manis"
+    },
+    {
+      "quantity": 1,
+      "unit": "el",
+      "name": "rijstazijn"
+    },
+    {
+      "quantity": 1,
+      "unit": "el",
+      "name": "suiker, naar smaak"
+    },
+    {
+      "quantity": 1,
+      "unit": "tl",
+      "name": "sambal oelek"
+    },
+    {
+      "quantity": 1,
+      "unit": "tl",
+      "name": "lichte sojasaus, naar smaak"
+    },
+    {
+      "quantity": 0.25,
+      "unit": "tl",
+      "name": "witte peper"
+    },
+    {
+      "quantity": 0.5,
+      "unit": "tl",
+      "name": "sesamolie"
+    },
+    {
+      "quantity": 1,
+      "unit": "el",
+      "name": "maizena (optioneel)"
+    },
+    {
+      "quantity": 2,
+      "unit": "",
+      "name": "bosuien"
+    },
+    {
+      "quantity": 100,
+      "unit": "g",
+      "name": "taugé"
+    },
+    {
+      "quantity": 50,
+      "unit": "g",
+      "name": "noedels (optioneel)"
+    }
+  ],
+  "instructions": [
+    "Snipper de ui en fruit 5 minuten in een beetje neutrale olie. Voeg fijngesneden knoflook en geraspte gember toe en bak 1 minuut mee.",
+    "Roer de tomatenpuree erdoor en bak 2 minuten zachtjes mee.",
+    "Snijd de tomaten in stukken, voeg toe en bak 5 minuten mee.",
+    "Voeg water en groentebouillon toe en laat 20 minuten zacht koken.",
+    "Pureer de soep glad. Zeef eventueel voor een extra fijne structuur.",
+    "Breng op smaak met ketjap, rijstazijn, suiker, sambal, lichte sojasaus en witte peper. Proef en stel de zoetzuurbalans bij.",
+    "Meng voor een dikkere soep de maizena met een beetje koud water, roer door de kokende soep en laat 2 minuten zacht doorkoken.",
+    "Kook de noedels apart volgens de verpakking. Verdeel met de taugé over de kommen, schenk de hete soep erop en garneer met bosui en sesamolie."
+  ],
+  "notes": "Begin met 1 el suiker en 1 el rijstazijn en stel na het proeven bij. Gebruik 400 ml water voor een volle tomatensmaak. Noedels en maizena zijn optioneel."
+}
