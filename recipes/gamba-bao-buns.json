@@ -12,9 +12,9 @@
       "name": "bao buns (2–3 per persoon; gebruik naar wens 12 voor 4 personen)"
     },
     {
-      "quantity": 800,
-      "unit": "g",
-      "name": "gamba’s (150–200 g per persoon; 600–800 g voor 4 personen)"
+      "quantity": 32,
+      "unit": "",
+      "name": "gamba’s (4 per bao bun)"
     },
     {
       "quantity": 4,
@@ -104,10 +104,10 @@
     "Dep de gamba’s goed droog. Verhit een pan heel heet met een klein beetje olie. Bak de gamba’s zo nodig in porties, zodat de pan heet blijft.",
     "Bak de gamba’s circa 1 minuut hard aan. Draai om, voeg de fijngehakte knoflook en geraspte gember toe en bak nog circa 1 minuut, tot de gamba’s net gaar zijn.",
     "Zet het vuur iets lager. Voeg de sojasaus toe (begin met 1 el per persoon) en schep nog 20–30 seconden om, zodat de soja om de gamba’s heen zit. Bak niet langer dan nodig; zo blijven ze sappig.",
-    "Laat de gepekelde kool en radijs uitlekken. Bestrijk elke bao met een dun laagje limoen-chilimayo en beleg met een flinke hoeveelheid kool en radijs, gevolgd door 2–3 gamba’s, afhankelijk van hun formaat.",
+    "Laat de gepekelde kool en radijs uitlekken. Bestrijk elke bao met een dun laagje limoen-chilimayo en beleg met een flinke hoeveelheid kool en radijs, gevolgd door 4 gamba’s per bao bun.",
     "Strooi de bosui pas op het einde over de gamba’s, zodat hij fris en knapperig blijft. Voeg eventueel een paar flinterdunne reepjes rauwe gember toe."
   ],
-  "notes": "Reken per persoon op 2–3 bao buns en 150–200 g gamba’s. De hoeveelheden hierboven zijn gebaseerd op 4 personen, met 8 bao buns en 800 g gamba’s. Houd de gamba’s vooral hartig, knoflookachtig en umami: de pickle en limoen-chilimayo zorgen al voor frisheid, zuur en pit. Wijnsuggestie: droge Riesling.",
+  "notes": "Reken op 4 gamba’s per bao bun. De hoeveelheden hierboven zijn gebaseerd op 4 personen, met 8 bao buns en 32 gamba’s. Gebruik je 12 bao buns, neem dan 48 gamba’s. Houd de gamba’s vooral hartig, knoflookachtig en umami: de pickle en limoen-chilimayo zorgen al voor frisheid, zuur en pit. Wijnsuggestie: droge Riesling.",
   "cover": {
     "src": "assets/images/gamba-bao-buns.webp",
     "alt": "Bao buns met gamba’s, gepekelde kool, radijs en limoen-chilimayonaise"
