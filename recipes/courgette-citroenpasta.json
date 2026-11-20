@@ -1,0 +1,74 @@
+{
+  "id": "courgette-citroenpasta",
+  "name": "Courgette-citroenpasta met burrata, pistache en krokante kappertjes",
+  "type": "Italiaans",
+  "minutes": 35,
+  "portions": 2,
+  "emoji": "🍝",
+  "ingredients": [
+    {
+      "quantity": 220,
+      "unit": "g",
+      "name": "linguine of tagliatelle"
+    },
+    {
+      "quantity": 2,
+      "unit": "",
+      "name": "middelgrote courgettes, samen ca. 500 g"
+    },
+    {
+      "quantity": 1,
+      "unit": "",
+      "name": "citroen, liefst onbespoten"
+    },
+    {
+      "quantity": 2,
+      "unit": "tenen",
+      "name": "knoflook, in dunne plakjes"
+    },
+    {
+      "quantity": 45,
+      "unit": "g",
+      "name": "Parmezaan, fijn geraspt"
+    },
+    {
+      "quantity": 1,
+      "unit": "",
+      "name": "burrata van 125 g, op kamertemperatuur"
+    },
+    {
+      "quantity": 30,
+      "unit": "g",
+      "name": "ongezouten pistachenoten, grof gehakt"
+    },
+    {
+      "quantity": 1.5,
+      "unit": "el",
+      "name": "kappertjes, uitgelekt en goed drooggedept"
+    },
+    {
+      "quantity": 30,
+      "unit": "g",
+      "name": "roomboter"
+    },
+    {
+      "quantity": 3,
+      "unit": "el",
+      "name": "olijfolie"
+    },
+    "6–8 muntblaadjes",
+    {
+      "quantity": null,
+      "unit": "",
+      "name": "Chilivlokken, zout en zwarte peper"
+    }
+  ],
+  "instructions": [
+    "Bak de kappertjes krokant. Snijd de kappertjes eerst grof. Verhit 1 el olijfolie in een ruime koekenpan en bak de kappertjes 2–3 minuten tot ze openspringen en krokant worden. Schep ze op keukenpapier.",
+    "Bak de courgette goudbruin. Snijd de courgettes in halve maantjes van ongeveer 1 cm. Bak ze in dezelfde pan op hoog vuur in twee porties met de overige olijfolie, ongeveer 5 minuten per portie. Laat ze eerst een paar minuten liggen zodat ze goed kleuren. Doe alles terug in de pan, zet het vuur lager en bak de knoflook en een snuf chilivlokken 30 seconden mee.",
+    "Maak de saus. Kook ondertussen de pasta al dente en bewaar een flinke mok pastawater. Pureer de helft van de courgette met de helft van de citroenrasp, 1 el citroensap en ongeveer 60 ml pastawater. Schep de puree, de pasta en de rest van de courgette samen in de pan. Zet het vuur uit en roer de Parmezaan erdoor. Voeg scheutjes pastawater toe tot de saus glanst en soepel om de pasta valt. Proef en voeg zo nodig citroensap, zout en zwarte peper toe.",
+    "Bruin de boter. Smelt de boter in een klein pannetje op middelhoog vuur. Zodra de spikkeltjes op de bodem amberkleurig zijn en de boter nootachtig ruikt, haal je de pan van het vuur. Roer de pistachenoten er meteen door.",
+    "Maak de borden op. Verdeel de pasta over twee warme borden en trek de burrata erboven open. Lepel de pistacheboter erover en eindig met de krokante kappertjes, gescheurde munt en de rest van de citroenrasp."
+  ],
+  "notes": "Bak de courgette diep goudbruin en pureer de helft tot een romige saus met citroen en Parmezaan. De rest schep je door de pasta. Bovenop komen burrata, krokante kappertjes en pistachenoten in gebruinde boter. Een paar blaadjes munt maken ’m af."
+}
