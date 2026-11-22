@@ -5,6 +5,10 @@
   "minutes": 35,
   "portions": 2,
   "emoji": "🍝",
+  "cover": {
+    "src": "assets/images/courgette-citroenpasta.webp",
+    "alt": "Linguine met goudbruin gebakken courgette, burrata, pistache, kappertjes en munt"
+  },
   "ingredients": [
     {
       "quantity": 220,
