@@ -5,6 +5,10 @@
   "minutes": 40,
   "portions": 4,
   "emoji": "🍅",
+  "cover": {
+    "src": "assets/images/chinese-tomatensoep.webp",
+    "alt": "Chinese tomatensoep met taugé, noedels en bosui in een keramieken kom"
+  },
   "ingredients": [
     {
       "quantity": 750,
