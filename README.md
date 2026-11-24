@@ -68,7 +68,9 @@ instructions (lijst), notes (tekst, eventueel leeg). Bestandsnaam: `<id>.json`.
 Optioneel: `cover` met `src` (lokaal pad `assets/images/<naam>.webp`, `.jpg` of `.png`)
 en een beschrijvende `alt`. Plaats de foto in `site/assets/images/`; de build
 controleert of deze bestaat. Gebruik bij nieuwe recepten een passende cover.
-Recepten zonder cover blijven werken met hun emoji.
+Recepten zonder cover blijven werken met hun emoji. Voor de snelle variant kun je
+`quickInstructions` toevoegen, met één korte instructie per volledige stap in dezelfde
+volgorde. Noem de belangrijkste tijden en temperaturen.
 De gezamenlijke catalogus wordt automatisch gebouwd. De website bevat geen GitHub-token.
 
 ## Publicatie
@@ -84,6 +86,8 @@ Zie docs/werkwijze.md voor de automatische preview na het bijwerken van source.j
 Recepten hebben een deelbare URL, bijvoorbeeld `#gamba-bao-buns`. Pas porties aan
 om bekende hoeveelheden om te rekenen; tijden en hoeveelheden zonder getal blijven
 gelijk. Ingrediënten en stappen zijn afvinkbaar en worden op dit apparaat bewaard.
+Kies bij Bereiding tussen “Volledig recept” en “Snelle variant” als er korte stappen
+beschikbaar zijn. De vinkjes worden gedeeld tussen beide weergaven.
 Met “Vinkjes wissen” begin je opnieuw; “Print recept” print alleen het geopende recept.
 
 Ingrediënten gebruiken `{"quantity": 200, "unit": "g", "name": "pasta"}`.

@@ -14,11 +14,19 @@ class RecipeTests(unittest.TestCase):
     def setUp(self):
         self.recipe = dict(load_recipes(ROOT / 'recipes')[0])
         self.recipe.pop('cover', None)
+        self.recipe.pop('quickInstructions', None)
 
     def test_invalid_recipe_is_rejected(self):
         for key, bad in [('id', '../escape'), ('minutes', True), ('portions', 0), ('ingredients', []), ('instructions', 'geen lijst')]:
             with self.subTest(key=key), self.assertRaises(ValueError):
                 validate(dict(self.recipe, **{key: bad}))
+
+    def test_quick_instructions_match_full_steps(self):
+        short_steps = ['Korte stap'] * len(self.recipe['instructions'])
+        validate(dict(self.recipe, quickInstructions=short_steps))
+        for bad in [None, [], short_steps + ['Extra stap'], [' '] * len(short_steps)]:
+            with self.subTest(quickInstructions=bad), self.assertRaises(ValueError):
+                validate(dict(self.recipe, quickInstructions=bad))
 
     def test_structured_ingredient_quantities(self):
         for bad in [True, 0, -1, float('nan'), float('inf'), '200']:

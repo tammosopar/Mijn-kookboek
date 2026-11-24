@@ -14,7 +14,7 @@ def validate(recipe):
     if not isinstance(recipe, dict):
         raise ValueError('Recept moet een JSON-object zijn')
     required = {'id', 'name', 'type', 'minutes', 'portions', 'emoji', 'ingredients', 'instructions', 'notes'}
-    if not required <= set(recipe) or set(recipe) - required - {'cover'}:
+    if not required <= set(recipe) or set(recipe) - required - {'cover', 'quickInstructions'}:
         raise ValueError(f'Verwachte velden: {sorted(required)}')
     if 'cover' in recipe:
         cover = recipe['cover']
@@ -34,9 +34,13 @@ def validate(recipe):
     for key in ('minutes', 'portions'):
         if type(recipe[key]) is not int or recipe[key] < 1:
             raise ValueError(f'{key} moet een positief geheel getal zijn')
-    for key in ('instructions',):
+    for key in ('instructions', 'quickInstructions'):
+        if key not in recipe:
+            continue
         if not isinstance(recipe[key], list) or not recipe[key] or not all(isinstance(x, str) and x.strip() for x in recipe[key]):
             raise ValueError(f'{key} moet een niet-lege lijst met tekst zijn')
+    if 'quickInstructions' in recipe and len(recipe['quickInstructions']) != len(recipe['instructions']):
+        raise ValueError('quickInstructions vereist één korte stap per volledige stap')
     if not isinstance(recipe['ingredients'], list) or not recipe['ingredients']:
         raise ValueError('ingredients moet een niet-lege lijst zijn')
     for item in recipe['ingredients']:

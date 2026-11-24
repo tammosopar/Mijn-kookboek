@@ -84,6 +84,24 @@ test('kookboek in Chromium', { timeout: 120000 }, async t => {
       assert.equal(await evaluate('location.hash'), '');
       assert.equal(await evaluate('document.querySelector("#viewer").open'), false);
     });
+    await t.test('snelle variant en volledige bereiding delen vinkjes', async () => {
+      await visit('#gamba-bao-buns');
+      await wait('document.querySelector("#viewer").open');
+      const bao = recipes.find(recipe => recipe.id === 'gamba-bao-buns');
+      const fullStep = '#detail ol.checklist li:first-child';
+      const shortStep = '#detail .recipe-modes + div ul.checklist li:first-child';
+      assert.equal(await evaluate(`document.querySelector('${fullStep} span').textContent`), bao.instructions[0]);
+      await evaluate(`document.querySelector('${fullStep} input').click()`);
+      await evaluate('document.querySelector(".recipe-modes button:last-child").click()');
+      assert.equal(await evaluate('document.querySelector(".recipe-modes button:last-child").getAttribute("aria-pressed")'), 'true');
+      assert.equal(await evaluate(`document.querySelector('${shortStep} span').textContent`), bao.quickInstructions[0]);
+      assert.equal(await evaluate(`document.querySelector('${shortStep} input').checked`), true);
+      assert.equal(await evaluate('Boolean(document.querySelector("#detail > ul.checklist input"))'), true);
+      await evaluate('document.querySelector("#portions").value="8"; document.querySelector("#portions").dispatchEvent(new Event("change"))');
+      await evaluate(`document.querySelector('${shortStep} input').click()`);
+      await evaluate('document.querySelector(".recipe-modes button:first-child").click()');
+      assert.equal(await evaluate(`document.querySelector('${fullStep} input').checked`), false);
+    });
     await t.test('kaart openen, terug en vooruit', async () => {
       await visit();
       await evaluate('document.querySelector(".recipe").click()');
