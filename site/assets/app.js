@@ -141,7 +141,7 @@ function openRecipe(recipe) {
   currentRecipe = recipe;
   if (changed) {
     selectedPortions = recipe.portions;
-    quickView = false;
+    quickView = Boolean(recipe.quickInstructions);
     progress = readProgress(recipe.id);
   }
   renderRecipe();

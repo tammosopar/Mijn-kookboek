@@ -86,8 +86,9 @@ Zie docs/werkwijze.md voor de automatische preview na het bijwerken van source.j
 Recepten hebben een deelbare URL, bijvoorbeeld `#gamba-bao-buns`. Pas porties aan
 om bekende hoeveelheden om te rekenen; tijden en hoeveelheden zonder getal blijven
 gelijk. Ingrediënten en stappen zijn afvinkbaar en worden op dit apparaat bewaard.
-Kies bij Bereiding tussen “Volledig recept” en “Snelle variant” als er korte stappen
-beschikbaar zijn. De vinkjes worden gedeeld tussen beide weergaven.
+Recepten met korte stappen openen in “Snelle variant”. Kies bij Bereiding
+“Volledig recept” voor de uitgebreide stappen. De vinkjes worden gedeeld tussen
+beide weergaven.
 Met “Vinkjes wissen” begin je opnieuw; “Print recept” print alleen het geopende recept.
 
 Ingrediënten gebruiken `{"quantity": 200, "unit": "g", "name": "pasta"}`.
