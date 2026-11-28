@@ -55,6 +55,16 @@ test('kookboek in Chromium', { timeout: 120000 }, async t => {
       await wait(`document.querySelectorAll(".recipe").length === ${recipeCount}`);
     };
     await command('Page.enable');
+    await t.test('Tammo-San en receptcovers worden geladen', async () => {
+      await visit();
+      await wait('document.querySelector(".site-cover img")?.naturalWidth > 0');
+      assert.equal(await evaluate('document.querySelector(".site-cover img").alt'), 'Tammo-San');
+      await visit('#langzaam-gestoofd-rundvlees');
+      await wait('document.querySelector("#viewer")?.open');
+      await wait('document.querySelector("#detail .detail-cover")?.naturalWidth > 0');
+      assert.ok(await evaluate('document.querySelector("#detail .detail-cover").src.endsWith("/langzaam-gestoofd-rundvlees.webp")'));
+      await evaluate('document.querySelector("#close").click()');
+    });
     await t.test('zoeken en keukenfilter', async () => {
       await visit();
       await evaluate('document.querySelector("#search").value="gamba"; document.querySelector("#search").dispatchEvent(new Event("input"))');
