@@ -3,6 +3,7 @@ const $ = id => document.getElementById(id);
 let recipes = [];
 let currentRecipe = null;
 let selectedPortions = 1;
+let quickView = false;
 let progress = {};
 const node = (tag, text, className) => {
   const el = document.createElement(tag);
@@ -30,7 +31,8 @@ function checklist(tag, items, kind) {
     const label = node('label');
     const checkbox = node('input');
     checkbox.type = 'checkbox';
-    const key = `${kind}:${index}:${kind === 'ingredient' ? JSON.stringify(currentRecipe.ingredients[index]) : text}`;
+    const original = kind === 'ingredient' ? JSON.stringify(currentRecipe.ingredients[index]) : currentRecipe.instructions[index];
+    const key = `${kind}:${index}:${original}`;
     checkbox.checked = progress[key] === true;
     checkbox.addEventListener('change', () => {
       progress[key] = checkbox.checked;
@@ -98,14 +100,48 @@ function renderRecipe() {
   controls.append(portionLabel, permalink, print, reset);
   detail.append(controls, node('p', `${selectedPortions} porties · Hoeveelheden zonder getal blijven gelijk. Bereidingstijden worden niet omgerekend.`, 'portion-note'));
   detail.append(node('h3', 'Ingrediënten'), checklist('ul', recipe.ingredients.map(ingredientText), 'ingredient'));
-  detail.append(node('h3', 'Bereiding'), checklist('ol', recipe.instructions, 'step'));
-  if (recipe.notes) detail.append(node('h3', 'Notities'), node('p', recipe.notes, 'notes'));
+  detail.append(node('h3', 'Bereiding'));
+  const preparation = node('div');
+  const notes = node('div');
+  if (recipe.notes) notes.append(node('h3', 'Notities'), node('p', recipe.notes, 'notes'));
+
+  const modeButtons = [];
+  function showPreparation() {
+    const useQuick = quickView && Boolean(recipe.quickInstructions);
+    const steps = useQuick ? recipe.quickInstructions : recipe.instructions;
+    preparation.replaceChildren(checklist(useQuick ? 'ul' : 'ol', steps, 'step'));
+    notes.hidden = useQuick;
+    modeButtons.forEach((button, index) => {
+      button.setAttribute('aria-pressed', String(useQuick === (index === 1)));
+    });
+  }
+
+  if (recipe.quickInstructions) {
+    const modes = node('div', undefined, 'recipe-modes');
+    modes.setAttribute('role', 'group');
+    modes.setAttribute('aria-label', 'Receptweergave');
+    for (const [label, isQuick] of [['Volledig recept', false], ['Snelle variant', true]]) {
+      const button = node('button', label);
+      button.type = 'button';
+      button.addEventListener('click', () => {
+        if (quickView === isQuick) return;
+        quickView = isQuick;
+        showPreparation();
+      });
+      modeButtons.push(button);
+      modes.append(button);
+    }
+    detail.append(modes);
+  }
+  detail.append(preparation, notes);
+  showPreparation();
 }
 function openRecipe(recipe) {
   const changed = currentRecipe?.id !== recipe.id;
   currentRecipe = recipe;
   if (changed) {
     selectedPortions = recipe.portions;
+    quickView = Boolean(recipe.quickInstructions);
     progress = readProgress(recipe.id);
   }
   renderRecipe();

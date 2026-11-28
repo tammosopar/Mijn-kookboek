@@ -49,6 +49,13 @@
     "Meng met pasta, citroenrasp, kruiden en wat kookwater.",
     "Breng op smaak met peper en citroensap."
   ],
+  "quickInstructions": [
+    "Kook pasta al dente en bewaar kookwater.",
+    "Bak courgette goudbruin en voeg knoflook toe.",
+    "Bak de zalm rustig gaar.",
+    "Meng met pasta, citroenrasp, kruiden en kookwater.",
+    "Breng op smaak met peper en citroensap."
+  ],
   "notes": "Licht en fris houden; niet te veel room.",
   "cover": {
     "src": "assets/images/pasta-met-zalm-en-courgette.webp",
