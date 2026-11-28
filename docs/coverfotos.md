@@ -1,9 +1,8 @@
 # Coverfoto’s
 
 De receptcovers staan als WebP in `site/assets/images/` en worden samen met de
-Tammo-San-omslag lokaal meegepubliceerd. De meeste covers zijn illustratieve
-beelden op basis van de receptingrediënten. De Chinese tomatensoep gebruikt
-een door Tammo aangeleverde foto.
+Tammo-San-omslag lokaal meegepubliceerd. De covers zijn illustratieve beelden op basis
+van de receptingrediënten.
 
 ## Promptset
 

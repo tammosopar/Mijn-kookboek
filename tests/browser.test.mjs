@@ -59,13 +59,11 @@ test('kookboek in Chromium', { timeout: 120000 }, async t => {
       await visit();
       await wait('document.querySelector(".site-cover img")?.naturalWidth > 0');
       assert.equal(await evaluate('document.querySelector(".site-cover img").alt'), 'Tammo-San');
-      for (const id of ['chinese-tomatensoep', 'langzaam-gestoofd-rundvlees']) {
-        await visit('#' + id);
-        await wait('document.querySelector("#viewer")?.open');
-        await wait('document.querySelector("#detail .detail-cover")?.naturalWidth > 0');
-        assert.match(await evaluate('document.querySelector("#detail .detail-cover").src'), new RegExp(id + '\\.webp$'));
-        await evaluate('document.querySelector("#close").click()');
-      }
+      await visit('#langzaam-gestoofd-rundvlees');
+      await wait('document.querySelector("#viewer")?.open');
+      await wait('document.querySelector("#detail .detail-cover")?.naturalWidth > 0');
+      assert.ok(await evaluate('document.querySelector("#detail .detail-cover").src.endsWith("/langzaam-gestoofd-rundvlees.webp")'));
+      await evaluate('document.querySelector("#close").click()');
     });
     await t.test('zoeken en keukenfilter', async () => {
       await visit();
