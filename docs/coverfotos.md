@@ -1,8 +1,9 @@
 # Coverfoto’s
 
-De illustratieve foodfoto’s zijn gegenereerd op basis van de receptingrediënten.
-De receptcovers staan als WebP van 1200 × 800 pixels in `site/assets/images/`
-en worden samen met de Tammo-San-omslag lokaal meegepubliceerd.
+De receptcovers staan als WebP in `site/assets/images/` en worden samen met de
+Tammo-San-omslag lokaal meegepubliceerd. De meeste covers zijn illustratieve
+beelden op basis van de receptingrediënten. De Chinese tomatensoep gebruikt
+een door Tammo aangeleverde foto.
 
 ## Promptset
 
@@ -16,8 +17,6 @@ close shot. Center the food with crop-safe margins. No text, logo, watermark or 
   radish, lime chili mayonnaise and spring onion.
 - `langzaam-gestoofd-rundvlees.webp`: Flemish beef and beer stew with winter carrots,
   quartered mushrooms, onions and a bay leaf.
-- `chinese-tomatensoep.webp`: smooth red tomato soup with noodles, bean sprouts,
-  scallions and drops of sesame oil in a light green ceramic bowl.
 - `pasta-met-zalm-en-courgette.webp`: tagliatelle with tender pink cooked salmon
   chunks, golden sauteed courgette half moons, lemon zest, parsley and a lightly
   glistening olive oil sauce; no cream sauce.
